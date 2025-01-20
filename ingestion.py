@@ -26,7 +26,7 @@ class HiveIngestion:
         Returns:
             str: Generated CREATE TABLE query.
         """
-        base_query = f"CREATE TABLE IF NOT EXISTS arc774_tmexploration_discovery.{table_name} (\n"
+        base_query = f"CREATE TABLE IF NOT EXISTS sales_db_object.{table_name} (\n"
         base_query += ",\n".join([f"    {col} STRING" for col in columns])
         base_query += "\n)"
  
@@ -50,8 +50,8 @@ class HiveIngestion:
         Returns:
             str: Generated LOAD DATA query.
         """
-        return f"LOAD DATA INPATH '/data/discovery/ARC774/TMexploration/{input_file}' " \
-               f"OVERWRITE INTO TABLE arc774_tmexploration_discovery.{table_name};"
+        return f"LOAD DATA INPATH '/path/{input_file}' " \
+               f"OVERWRITE INTO TABLE sales_db_object.{table_name};"
  
     def execute_query(self, query, verbose=False):
         """
